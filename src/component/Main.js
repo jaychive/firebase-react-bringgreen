@@ -12,7 +12,7 @@ function Main(props) {
           <p className='py-3'>Tea Tree Soothing Lotion Bar PLUS+</p>
           <strong className='pb-3'>Release Event</strong>
           <p className='pb-5'>11.11(Fri)-11.20(Sun)</p>
-          <Btn className="justify-content-center align-items-center" type={props.sort}></Btn>
+          <Btn className="justify-content-center align-items-center" type={props.data && props.data[props.sort]}></Btn>
         </div>
       </div>
     </section>

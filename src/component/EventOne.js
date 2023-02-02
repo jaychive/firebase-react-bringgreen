@@ -5,7 +5,7 @@ function EventOne(props) {
   return (
     <section id='event1' className='sectionSpace'>
       <div className='pb-5'>
-        <EventTitle type={props.sort}></EventTitle>
+        <EventTitle type={props.data && props.data[props.sort]}></EventTitle>
       </div>
       <div className="container">
         <div className="row">

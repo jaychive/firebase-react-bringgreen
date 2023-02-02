@@ -11,9 +11,7 @@ import Products from './component/Products';
 
 import { useState, useEffect } from 'react';
 import { db } from './firebase/Firebase-config';
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
-import signIn from './firebase/firebase-sign-in';
-import offlineSetting from './firebase/offlineSetting';
+import { collection, doc, getDoc } from 'firebase/firestore';
 
 
 function App() {
@@ -26,25 +24,23 @@ function App() {
   const propsRef = collection(db, "propsDB");
   const swiperRef = collection(db, "swiperinfo");
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const naviDoc = doc(naviRef, "Hhomamugwj1aKweGbVYF");
-      const propsDoc = doc(propsRef, "4IZe1AZZf5N5qHWfChtl");
-      const swiperDoc = doc(swiperRef, "H3L0B0nw665krADsd1nN");
+  const getUsers = async () => {
+    const naviDoc = doc(naviRef, "Hhomamugwj1aKweGbVYF");
+    const propsDoc = doc(propsRef, "4IZe1AZZf5N5qHWfChtl");
+    const swiperDoc = doc(swiperRef, "H3L0B0nw665krADsd1nN");
 
-      const naviSnap = await getDoc(naviDoc);
-      const propsSnap = await getDoc(propsDoc);
-      const swiperSnap = await getDoc(swiperDoc);
+    const naviSnap = await getDoc(naviDoc);
+    const propsSnap = await getDoc(propsDoc);
+    const swiperSnap = await getDoc(swiperDoc);
 
-      if (naviSnap.exists()&&propsSnap.exists()&&swiperSnap.exists()) {
-        setNavi(naviSnap.data());
-        setProps(propsSnap.data());
-        setSwiperinfo(swiperSnap.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
+    if (naviSnap.exists()&&propsSnap.exists()&&swiperSnap.exists()) {
+      setNavi(naviSnap.data());
+      setProps(propsSnap.data());
+      setSwiperinfo(swiperSnap.data());
     }
+  }
+
+  useEffect(() => {
     getUsers();
   }, [])
 
@@ -52,15 +48,15 @@ function App() {
 
   return (
     <div className="App">
-      <Header></Header>
-      <Main sort="mainDB"></Main>
-      <New sort="newDB"></New>
-      <Brand sort="brandDB"></Brand>
-      <Review sort="reviewDB"></Review>
-      <Plus sort="plusDB"></Plus>
-      <EventOne sort="event1DB"></EventOne>
-      <EventTwo sort="event2DB"></EventTwo>
-      <Products sort="productsDB"></Products>
+      <Header quick="quickDB" data={navidata}></Header>
+      <Main sort="mainDB" data={propsdata}></Main>
+      <New sort="newDB" data={propsdata}></New>
+      <Brand sort="brandDB" data={propsdata}></Brand>
+      <Review sort="reviewDB" data={propsdata}></Review>
+      <Plus sort="plusDB" data={propsdata}></Plus>
+      <EventOne sort="event1DB" data={propsdata}></EventOne>
+      <EventTwo sort="event2DB" data={propsdata}></EventTwo>
+      <Products sort="productsDB" data={propsdata} slide={swiperinfo} swipe="products"></Products>
       <Footer></Footer>
     </div>
   );

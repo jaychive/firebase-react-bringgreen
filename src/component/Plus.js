@@ -4,7 +4,7 @@ import Title from './reusable/Title';
 function Plus(props) {
   return (
     <section id='plus' className='sectionSpace'>
-      <Title type={props.sort}></Title>
+      <Title type={props.data && props.data[props.sort]}></Title>
       <div className="container pt-5">
         <div className="row flex-wrap text-center justify-content-around">
           <div className="dotCircle col-4">

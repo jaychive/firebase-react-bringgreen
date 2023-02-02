@@ -9,6 +9,7 @@ function Header(props) {
   const targetRef = useRef(null);
   const [isMobile, setisMobile] = useState(false);
   const [naviOpen, setnaviOpen] = useState(false);
+  const quickdata = useRef('');
 
   const resizeHandler = () => {
     if (window.innerWidth <= 767) {
@@ -53,16 +54,17 @@ function Header(props) {
 
       }} >햄버거</button>
 
-      <Navi cls={isMobile ? 'mobileNavi' : ''} toggle={naviOpen ? 'on' : ''} />
+      <Navi cls={isMobile ? 'mobileNavi' : ''} toggle={naviOpen ? 'on' : ''} type={props.data} sort="naviDB" />
       
       <ul className='d-md-flex ps-0 mb-0 d-none'>
-        {/* {
-          navDB.quickDB.map(function (value, index){
+        {
+          props.data.quickDB &&
+          props.data.quickDB.map(function (value, index){
             return(
-              <li className='quickIcon' key={value[0]+index}><a href={value[2]} target="_blank" rel="noreferrer noopener"><i className={value[1]}></i><span className="visually-hidden">{value[0]}</span></a></li>
+              <li className='quickIcon' key={value.quickName+index}><a href={value.quickLink} target="_blank" rel="noreferrer noopener"><i className={value.quickFont}></i><span className="visually-hidden">{value.quickName}</span></a></li>
             )
           })
-        } */}
+        }
       </ul>
     </header>
   )

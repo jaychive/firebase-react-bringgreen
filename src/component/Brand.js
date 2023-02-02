@@ -23,7 +23,7 @@ function Brand(props) {
               </div>
               <p className="text-white mb-5 text-wrap text-center"> 수분에 진심! 매일매일 피부에 자연을 골라담다.
                 <br />수분이 부족한 피부에 대한 솔루션을 제공하는 수분 기능성 자연주의 브랜드 브링그린입니다.</p>
-              <Btn className="" type={props.sort}></Btn>
+              <Btn className="" type={props.data && props.data[props.sort]}></Btn>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import Title from './reusable/Title';
 function New(props) {
   return (
     <section id='new' className='sectionSpace'>
-      <Title type={props.sort}></Title>
+      <Title type={props.data && props.data[props.sort]}></Title>
       <div className="container">
         <div className="row text-center justify-content-center align-items-center">
           <div className="col-4 d-flex flex-column align-items-between">
